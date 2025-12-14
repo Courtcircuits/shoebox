@@ -1,0 +1,7 @@
+$ORIGIN homelab.box.
+@         IN  SOA dns.homelab.box. radulescu.proton.me. 2502011720 7200 3600 1209600 3600
+
+@ 		  IN  A   100.65.47.80
+dns       IN  A   100.65.47.80
+wisp      IN  A   100.65.47.80
+diiv      IN  A   100.65.160.100

@@ -1,0 +1,87 @@
+controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+   requests:
+     cpu: 457m
+     memory: 889Mi
+   limits:
+     memory: 1000Mi
+
+dex:
+  resources: 
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+configs:
+  params:
+    server.insecure: true
+  cm:
+    create: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    admin.enabled: true
+    exec.enabled: true
+    accounts.gitlab.enabled: true
+    timeout.reconciliation: 60s
+    accounts.gitlab: apiKey
+    accounts.devaccess.enabled: true
+    accounts.devaccess: login
+    resource.customizations: |
+      admissionregistration.k8s.io/MutatingWebhookConfiguration:
+        ignoreDifferences: |
+          jsonPointers:
+          - /webhooks/0/clientConfig/caBundle
+
+server:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+  ingress:
+      enabled: true
+      ingressClassName: traefik
+
+repoServer:
+  resources:
+    requests:controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+   requests:
+     cpu: 457m
+     memory: 889Mi
+   limits:
+     memory: 1000Mi
+
+dex:
+  resources: 
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
