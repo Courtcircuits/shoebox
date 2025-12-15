@@ -1,0 +1,19 @@
+{{ $root := . }}
+{{- range $vm := .Values.vms }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $vm.name }}-svc
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  selector:
+    kubevirt.io/domain: {{ $vm.name }}
+  ports:
+  {{ range $port := $vm.ports }}
+  - port: {{ $port.port }}
+    targetPort: {{ $port.port }}
+    protocol: {{ $port.protocol }}
+    name: {{ $port.name }}
+  {{ end }}
+{{- end }}

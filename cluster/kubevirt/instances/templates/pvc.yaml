@@ -1,0 +1,19 @@
+{{ $root := . }}
+{{- range $vm := .Values.vms }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-{{ $vm.name }}
+  namespace: {{ $root.Values.namespace }}
+spec:
+  storageClassName: longhorn
+  dataSource:
+    name: {{ $vm.dvSource }}
+    kind: PersistentVolumeClaim
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ $vm.disk.size }}
+---
+{{- end }}

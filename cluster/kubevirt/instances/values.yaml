@@ -1,0 +1,30 @@
+sshKey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID50ksbMbCOdJv4CbO9pSbrqBZLoskgHYkPmPpBvBsEg tristan-mihai.radulescu@etu.umontpellier.fr
+namespace: kubevirt
+
+defaultUsers:
+  - name: root
+    tmppwd: root
+  - name: courtcircuits
+    tmppwd: courtcircuits
+
+vms:
+  - name: center
+    dvSource: debian-dv
+    node: snaut
+    hostname: center
+    subdomain: mfacloud
+    cpu:
+      cores: 2
+    memory: 512M
+    disk:
+      size: 10856Mi
+    ports:
+      - port: 22
+        protocol: TCP
+        name: ssh
+      - port: 80
+        protocol: TCP
+        name: http
+      - port: 443
+        protocol: TCP
+        name: https

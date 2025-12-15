@@ -1,0 +1,75 @@
+{{ $root := . }}
+{{- range $vm := .Values.vms }}
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/os: linux
+  name: {{ $vm.name }}
+  annotations:
+    volume.kubevirt.io/selected-node: {{ $vm.node }}
+spec:
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: {{ $vm.name }}
+    spec:
+      networks:
+        - name: default
+          pod: {}
+      hostname: {{ $vm.hostname }}
+      subdomain: {{ $vm.subdomain }}
+      domain:
+        cpu:
+          cores: {{ $vm.cpu.cores }}
+        devices:
+          interfaces:
+            - bridge: {}
+              name: default
+          disks:
+          - disk:
+              bus: virtio
+            name: disk0
+          - cdrom:
+              bus: sata
+              readonly: true
+            name: cloudinitdisk
+        machine:
+          type: q35
+        resources:
+          requests:
+            memory: {{ $vm.memory }}
+      volumes:
+      - persistentVolumeClaim:
+          claimName: pvc-{{ $vm.name }}
+          readOnly: false
+        name: disk0
+      - cloudInitNoCloud:
+          userData: |
+            #cloud-config
+            groups:
+              - wheel: [root,sys]
+              - admin: [root]
+              - users
+            users:
+              {{- range $user := $root.Values.defaultUsers }}
+              - name: {{ $user.name }}
+                primary_group: wheel
+                groups: users,admin
+                sudo: ALL=(ALL) NOPASSWD:ALL
+                ssh_import_id: {{ $user.name }}
+              {{- end }}
+            chpasswd:
+              list: |
+                {{- range $user := $root.Values.defaultUsers }}
+                {{ $user.name }}:{{ $user.tmppwd }}
+                {{- end }}
+            ssh_pwauth: True
+            disable_root: false
+            ssh_authorized_keys:
+            - {{ $root.Values.sshKey }}
+        name: cloudinitdisk
+---
+{{- end }}
+
