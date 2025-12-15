@@ -9,7 +9,7 @@ defaultUsers:
 
 vms:
   - name: center
-    dvSource: debian-dv
+    dvSource: debian13-dv
     node: snaut
     hostname: center
     subdomain: mfacloud
