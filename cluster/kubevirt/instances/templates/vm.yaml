@@ -6,8 +6,6 @@ metadata:
   labels:
     kubevirt.io/os: linux
   name: {{ $vm.name }}
-  annotations:
-    volume.kubevirt.io/selected-node: {{ $vm.node }}
 spec:
   runStrategy: Always
   template:
@@ -43,7 +41,6 @@ spec:
       volumes:
       - persistentVolumeClaim:
           claimName: pvc-{{ $vm.name }}
-          readOnly: false
         name: disk0
       - cloudInitNoCloud:
           userData: |
@@ -65,7 +62,7 @@ spec:
                 {{- range $user := $root.Values.defaultUsers }}
                 {{ $user.name }}:{{ $user.tmppwd }}
                 {{- end }}
-            ssh_pwauth: True
+            ssh_pkubectl create -f vm1_pvc.ymlwauth: True
             disable_root: false
             ssh_authorized_keys:
             - {{ $root.Values.sshKey }}

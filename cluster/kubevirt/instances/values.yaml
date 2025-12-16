@@ -9,7 +9,7 @@ defaultUsers:
 
 vms:
   - name: center
-    dvSource: wisp-debian12-dv
+    dvSource: fedora
     node: wisp
     hostname: center
     subdomain: mfacloud
