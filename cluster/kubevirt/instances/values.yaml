@@ -9,8 +9,8 @@ defaultUsers:
 
 vms:
   - name: center
-    dvSource: debian12-dv
-    node: diiv
+    dvSource: wisp-debian12-dv
+    node: wisp
     hostname: center
     subdomain: mfacloud
     cpu:
