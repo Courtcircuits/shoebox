@@ -8,23 +8,23 @@ defaultUsers:
     tmppwd: courtcircuits
 
 vms:
-  - name: center
-    dvSource: fedora
-    node: wisp
-    hostname: center
-    subdomain: mfacloud
-    cpu:
-      cores: 2
-    memory: 512M
-    disk:
-      size: 10856Mi
-    ports:
-      - port: 22
-        protocol: TCP
-        name: ssh
-      - port: 80
-        protocol: TCP
-        name: http
-      - port: 443
-        protocol: TCP
-        name: https
+  # - name: center
+  #   dvSource: fedora
+  #   node: wisp
+  #   hostname: center
+  #   subdomain: mfacloud
+  #   cpu:
+  #     cores: 2
+  #   memory: 512M
+  #   disk:
+  #     size: 10856Mi
+  #   ports:
+  #     - port: 22
+  #       protocol: TCP
+  #       name: ssh
+  #     - port: 80
+  #       protocol: TCP
+  #       name: http
+  #     - port: 443
+  #       protocol: TCP
+  #       name: https

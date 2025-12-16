@@ -13,18 +13,10 @@ spec:
       labels:
         kubevirt.io/domain: {{ $vm.name }}
     spec:
-      networks:
-        - name: default
-          pod: {}
-      hostname: {{ $vm.hostname }}
-      subdomain: {{ $vm.subdomain }}
       domain:
         cpu:
           cores: {{ $vm.cpu.cores }}
         devices:
-          interfaces:
-            - bridge: {}
-              name: default
           disks:
           - disk:
               bus: virtio
