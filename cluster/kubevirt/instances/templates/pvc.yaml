@@ -6,7 +6,7 @@ metadata:
   name: pvc-{{ $vm.name }}
   namespace: {{ $root.Values.namespace }}
 spec:
-  storageClassName: longhorn
+  storageClassName: longhorn-la
   dataSource:
     name: {{ $vm.dvSource }}
     kind: VolumeSnapshot

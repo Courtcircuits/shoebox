@@ -3,7 +3,7 @@ kind: VolumeSnapshot
 metadata:
   name: new-snapshot-test
 spec:
-  volumeSnapshotClassName: longhorn
+  volumeSnapshotClassName: longhorn-la
   source:
     persistentVolumeClaimName: debian12-dv
 

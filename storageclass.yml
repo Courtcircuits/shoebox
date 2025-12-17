@@ -1,13 +1,9 @@
-kind: StorageClass
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
-  name: longhorn-v2
+  name: longhorn-la
 provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
 parameters:
-  dataEngine: "v2"
-  numberOfReplicas: "1"
-  staleReplicaTimeout: "2880"
+  numberOfReplicas: "2"
+  staleReplicaTimeout: "30"
 
