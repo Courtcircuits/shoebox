@@ -8,7 +8,7 @@ metadata:
     volume.kubernetes.io/selected-node: {{ .node }}
 spec:
   storage:
-    storageClassName: longhorn-la
+    storageClassName: longhorn
     accessModes:
       - ReadWriteOnce
     resources:
