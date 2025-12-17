@@ -13,7 +13,7 @@ spec:
       labels:
         kubevirt.io/domain: {{ $vm.name }}
     spec:
-     networks:
+      networks:
         - name: default
           pod: {}
       hostname: {{ $vm.hostname }}
