@@ -8,23 +8,63 @@ defaultUsers:
     tmppwd: courtcircuits
 
 vms:
-  # - name: center
-  #   dvSource: debian12-dv
-  #   node: wisp
-  #   hostname: center
-  #   subdomain: mfacloud
-  #   cpu:
-  #     cores: 2
-  #   memory: 512M
-  #   disk:
-  #     size: 10856Mi
-  #   ports:
-  #     - port: 22
-  #       protocol: TCP
-  #       name: ssh
-  #     - port: 80
-  #       protocol: TCP
-  #       name: http
-  #     - port: 443
-  #       protocol: TCP
-  #       name: https
+  - name: wilt
+    dvSource: debian12-dv
+    node: diiv
+    hostname: wilt
+    subdomain: shoebox
+    cpu:
+      cores: 2
+    memory: 512M
+    disk:
+      size: 10856Mi
+    ports:
+      - port: 22
+        protocol: TCP
+        name: ssh
+      - port: 80
+        protocol: TCP
+        name: http
+      - port: 443
+        protocol: TCP
+        name: https
+  - name: glixen
+    dvSource: debian12-dv
+    node: wisp
+    hostname: glixen
+    subdomain: shoebox
+    cpu:
+      cores: 2
+    memory: 512M
+    disk:
+      size: 10856Mi
+    ports:
+      - port: 22
+        protocol: TCP
+        name: ssh
+      - port: 80
+        protocol: TCP
+        name: http
+      - port: 443
+        protocol: TCP
+        name: https
+  - name: hank
+    dvSource: debian12-dv
+    node: wisp
+    hostname: hank
+    subdomain: shoebox
+    cpu:
+      cores: 2
+    memory: 512M
+    disk:
+      size: 10856Mi
+    ports:
+      - port: 22
+        protocol: TCP
+        name: ssh
+      - port: 80
+        protocol: TCP
+        name: http
+      - port: 443
+        protocol: TCP
+        name: https

@@ -1,0 +1,18 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: debian12-dv
+  namespace: kubevirt
+  annotations:
+    volume.kubernetes.io/selected-node: diiv
+spec:
+  storage:
+    storageClassName: longhorn
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+  source:
+    http:
+      url: https://cdimage.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.raw

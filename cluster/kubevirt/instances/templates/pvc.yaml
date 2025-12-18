@@ -9,8 +9,7 @@ spec:
   storageClassName: longhorn
   dataSource:
     name: {{ $vm.dvSource }}
-    kind: VolumeSnapshot
-    apiGroup: snapshot.storage.k8s.io
+    kind: PersistentVolumeClaim
   accessModes:
     - ReadWriteOnce
   resources:
