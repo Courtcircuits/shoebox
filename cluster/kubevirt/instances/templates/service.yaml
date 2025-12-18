@@ -16,4 +16,5 @@ spec:
     protocol: {{ $port.protocol }}
     name: {{ $port.name }}
   {{ end }}
+---
 {{- end }}
