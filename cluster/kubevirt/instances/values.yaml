@@ -28,43 +28,15 @@ vms:
       - port: 443
         protocol: TCP
         name: https
-  - name: glixen
-    dvSource: debian12-dv
-    node: wisp
-    hostname: glixen
-    subdomain: shoebox
-    cpu:
-      cores: 2
-    memory: 512M
-    disk:
-      size: 10856Mi
-    ports:
-      - port: 22
+      - port: 389
+        protocol: UDP
+        name: ldap
+      - port: 389
+        protocol: tcp
+        name: ldaptcp
+      - port: 636
         protocol: TCP
-        name: ssh
-      - port: 80
-        protocol: TCP
-        name: http
-      - port: 443
-        protocol: TCP
-        name: https
-  - name: hank
-    dvSource: debian12-dv
-    node: wisp
-    hostname: hank
-    subdomain: shoebox
-    cpu:
-      cores: 2
-    memory: 512M
-    disk:
-      size: 10856Mi
-    ports:
-      - port: 22
-        protocol: TCP
-        name: ssh
-      - port: 80
-        protocol: TCP
-        name: http
-      - port: 443
-        protocol: TCP
-        name: https
+        name: ldaps
+      - port: 636
+        protocol: UDP
+        name: ldaps2
