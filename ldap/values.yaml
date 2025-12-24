@@ -36,14 +36,6 @@ ldap:
 
   # LDAP initialization configuration
   initLdif: |
-    # Define organizational units and example users
-    dn: dc=homelab,dc=local
-    objectClass: top
-    objectClass: dcObject
-    objectClass: organization
-    o: Homelab
-    dc: homelab
-
     dn: ou=system,dc=homelab,dc=local
     objectClass: organizationalUnit
     ou: system
