@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: observability
+spec:
+  project: applications
+  source:
+    repoURL: "https://grafana.github.io/helm-charts"
+    path: grafana/loki
+    targetRevision: 6.49.0
+    helm:
+      releaseName: loki
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ldap
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
