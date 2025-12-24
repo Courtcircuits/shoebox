@@ -11,6 +11,19 @@ spec:
     targetRevision: 6.49.0
     helm:
       releaseName: loki-db
+      values: |
+       loki:
+         auth_enabled: false
+         storage:
+           type: filesystem
+       limits_config:
+         retention_period: 720h  # 30 days
+       singleBinary:
+         replicas: 1
+       serviceMonitor:
+         enabled: true
+
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ldap
