@@ -7,7 +7,7 @@ spec:
   project: applications
   source:
     repoURL: "https://grafana.github.io/helm-charts"
-    path: grafana/loki
+    chart: loki
     targetRevision: 6.49.0
     helm:
       releaseName: loki-db
