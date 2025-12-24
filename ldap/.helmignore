@@ -21,8 +21,3 @@
 .idea/
 *.tmproj
 .vscode/
-# Original kubernetes manifests
-deployment.yaml
-service.yaml
-configmap.yaml
-secret.yaml
