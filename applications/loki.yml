@@ -44,7 +44,7 @@ spec:
 
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: ldap
+    namespace: observability
   syncPolicy:
     automated:
       prune: true
