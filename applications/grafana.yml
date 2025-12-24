@@ -13,15 +13,7 @@ spec:
       releaseName: grafana
       values: |
         ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: "traefik"
-          path: /grafana
-          hosts:
-            - grafana.homelab.local
-        grafana.ini:
-          server:
-            root_url: http://localhost:3000/grafana # this host can be localhost
+          enabled: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: observability
