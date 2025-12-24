@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ldap.fullname" . }}
+  labels:
+    {{- include "ldap.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ldap.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ldap.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+      - name: ldap
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.targetPort }}
+          name: ldap
+          protocol: {{ .Values.service.protocol }}
+        env:
+        - name: DEFAULT_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "ldap.fullname" . }}-secret
+              key: admin-password
+        - name: DEFAULT_ORG_DOMAIN
+          value: {{ .Values.ldap.orgDomain | quote }}
+        volumeMounts:
+        - name: ldap-init
+          mountPath: /etc/init.ldif
+          subPath: init.ldif
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+      volumes:
+      - name: ldap-init
+        configMap:
+          name: {{ include "ldap.fullname" . }}-config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

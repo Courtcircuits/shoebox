@@ -1,0 +1,12 @@
+apiVersion: v2
+name: ldap
+description: A Helm chart for LDAP server deployment
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - ldap
+  - authentication
+  - directory
+maintainers:
+  - name: courtcircuits
