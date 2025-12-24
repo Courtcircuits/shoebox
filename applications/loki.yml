@@ -19,6 +19,15 @@ spec:
          auth_enabled: false
          storage:
            type: filesystem
+         schemaConfig:
+           configs:
+             - from: 2024-04-01
+               object_store: filesystem
+               store: tsdb
+               schema: v13
+               index:
+                 prefix: index_
+                 period: 24h
        limits_config:
          retention_period: 720h  # 30 days
        write:
