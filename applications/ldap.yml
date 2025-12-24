@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ldap-server
+  namespace: argo
+spec:
+  project: applications
+  source:
+    repoURL: "https://github.com/Courtcircuits/shoebox"
+    path: ldap
+    targetRevision: HEAD
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ldap
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

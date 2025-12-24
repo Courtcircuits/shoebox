@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ldap-service
+  labels:
+    app: ldap
+spec:
+  type: ClusterIP
+  selector:
+    app: ldap
+  ports:
+  - port: 389
+    targetPort: 389
+    protocol: TCP
+    name: ldap
