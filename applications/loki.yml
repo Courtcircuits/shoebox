@@ -12,12 +12,21 @@ spec:
     helm:
       releaseName: loki-db
       values: |
+       deploymentMode: SingleBinary
        loki:
+         commonConfig:
+           replication_factor: 1
          auth_enabled: false
          storage:
            type: filesystem
        limits_config:
          retention_period: 720h  # 30 days
+       write:
+         replicas: 0
+       read:
+         replicas: 0
+       backend:
+         replicas: 0
        singleBinary:
          replicas: 1
        serviceMonitor:
