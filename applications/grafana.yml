@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argo
+spec:
+  project: applications
+  source:
+    repoURL: "https://grafana.github.io/helm-charts"
+    chart: grafana
+    targetRevision: 10.4.0
+    helm:
+      releaseName: grafana
+      values: |
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: "traefik"
+          path: /grafana
+          hosts:
+            - grafana.homelab.local
+        grafana.ini:
+          server:
+            root_url: http://localhost:3000/grafana # this host can be localhost
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
