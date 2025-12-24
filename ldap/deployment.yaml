@@ -35,10 +35,10 @@ spec:
           subPath: init.ldif
         resources:
           requests:
-            memory: "128Mi"
+            memory: "1024Mi"
             cpu: "100m"
           limits:
-            memory: "256Mi"
+            memory: "2048Mi"
             cpu: "200m"
       volumes:
       - name: ldap-init
