@@ -5,7 +5,8 @@ metadata:
   labels:
     {{- include "ldap.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: LoadBalancer
+  loadBalancerClass: tailscale
   selector:
     {{- include "ldap.selectorLabels" . | nindent 4 }}
   ports:
